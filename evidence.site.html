@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Package — Advocate Group Care</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --bg2: #141720;
+    --bg3: #1c2030;
+    --border: #2a2e3d;
+    --border2: #353a50;
+    --text: #d8dce8;
+    --text2: #bdc1d2;
+    --text3: #9498a7;
+    --accent: #e8b84b;
+    --accent2: #c49a2e;
+    --red: #e05252;
+    --green: #4caf7d;
+    --blue: #5b9bd5;
+    --purple: #8b7ecf;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    /* font-size: 14px; */
+    font-size: 20px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a:link {
+  color: rgb(178, 184, 241);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(178, 184, 241);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(178, 184, 241)
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: rgb(178, 184, 241);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-title {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .header-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(224,82,82,0.12);
+    border: 1px solid rgba(224,82,82,0.3);
+    color: var(--red);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+  .header-badge::before { content: '⬛'; font-size: 7px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .stat {
+    flex: 1;
+    min-width: 120px;
+    padding: 16px 20px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── FILTER TABS ── */
+  .filter-bar {
+    display: flex;
+    gap: 4px;
+    padding: 12px 32px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 14x;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--border2); color: var(--text); }
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 48px; }
+  .section-header {
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-desc {
+    font-size: 16px;
+    color: var(--text2);
+    margin-top: 8px;
+    line-height: 1.7;
+    max-width: 900px;
+  }
+  .section-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 6px;
+  }
+
+  /* ── TILE GRID ── */
+  .tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── TILE ── */
+  .tile {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .tile:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* Thumbnail area */
+  .tile-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .tile-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+  /* thumbnail image fills the thumb area */
+  .tile-thumb .thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  /* When image fails, hide it and show fallback */
+  .tile-thumb .thumb-img.error { display: none; }
+  .tile-thumb .thumb-img.error ~ .img-fallback { display: flex; }
+  /* Play button overlay */
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.35);
+  }
+  .play-btn {
+    width: 52px;
+    height: 52px;
+    background: rgba(232,184,75,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .tile:hover .play-btn {
+    transform: scale(1.1);
+    background: var(--accent);
+  }
+  .play-btn svg { width: 22px; height: 22px; fill: #000; margin-left: 3px; }
+
+  /* Image fallback icon (shown when img fails to load) */
+  .img-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    opacity: 0.2;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .img-fallback.visible { display: flex; }
+
+  /* Audio waveform placeholder */
+  .audio-wave {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 20px;
+  }
+  .wave-bar {
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.5;
+    animation: wavePulse 1.4s ease-in-out infinite;
+  }
+  @keyframes wavePulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Tile type badge */
+  .tile-type-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .badge-video { background: rgba(91,155,213,0.85); color: #fff; }
+  .badge-photo { background: rgba(76,175,125,0.85); color: #fff; }
+  .badge-audio { background: rgba(139,126,207,0.85); color: #fff; }
+  .badge-doc   { background: rgba(232,184,75,0.85); color: #000; }
+  .badge-msg   { background: rgba(224,82,82,0.85); color: #fff; }
+
+  /* Star badge */
+  .star-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  /* Tile body */
+  .tile-body {
+    padding: 12px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tile-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tile-platform {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .tile-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+  }
+  .tile-notice {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: rgba(232,184,75,0.08);
+    border: 1px solid rgba(232,184,75,0.2);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .tile-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .tile-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .tile-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    margin-top: auto;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.88);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox.open { display: flex; }
+  .lb-inner {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .lb-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+  .lb-title-wrap { flex: 1; min-width: 0; }
+  .lb-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lb-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .lb-close {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .lb-close:hover { border-color: var(--red); color: var(--red); }
+  .lb-media {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0c0f;
+    min-height: 0;
+    position: relative;
+  }
+  .lb-media video {
+    max-width: 100%;
+    max-height: 70vh;
+    display: block;
+  }
+  .lb-media audio {
+    width: 90%;
+    margin: 40px auto;
+    display: block;
+  }
+  .lb-media img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+  }
+  .lb-media iframe {
+    width: 100%;
+    height: 70vh;
+    border: none;
+    display: block;
+  }
+  .lb-media .lb-msg-view {
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 24px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+  .lb-missing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .lb-missing-icon { font-size: 48px; opacity: 0.3; }
+  .lb-missing-title { font-size: 15px; color: var(--text2); font-weight: 600; }
+  .lb-missing-path { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+  .lb-footer {
+    padding: 10px 18px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .lb-nav { display: flex; gap: 8px; }
+  .lb-nav-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 14px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .lb-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .lb-nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .lb-counter {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* ── SECTION C, D, E ── */
+  .section-b-header { border-left-color: var(--red); }
+  .section-b-header .section-label { color: var(--red); }
+  .section-c-header { border-left-color: var(--blue); }
+  .section-c-header .section-label { color: var(--blue); }
+  .section-d-header { border-left-color: var(--purple); }
+  .section-d-header .section-label { color: var(--purple); }
+  .section-e-header { border-left-color: var(--green); }
+  .section-e-header .section-label { color: var(--green); }
+
+  .section-f-header { border-left-color: #e8b84b; }
+  .section-f-header .section-label { color: #e8b84b; }
+  .tile-text-view {
+    padding: 20px 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.8;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+  .tile-text-view strong { color: var(--accent); }
+  .tile-text-view .strike { color: var(--red); text-decoration: line-through; }
+  .contra-list { display: flex; flex-direction: column; gap: 4px; padding: 16px; }
+  .contra-row { display: flex; gap: 10px; font-size: 12px; line-height: 1.5; }
+  .contra-claim { color: var(--text2); flex: 1; }
+  .contra-x { color: var(--red); font-weight: 700; flex-shrink: 0; }
+  .contra-proof { color: var(--green); flex: 1; font-family: var(--mono); font-size: 11px; }
+  @media (max-width: 640px) {
+    .main { padding: 16px; }
+    .filter-bar { padding: 10px 16px; }
+    .site-header { padding: 14px 16px; }
+    .tile-grid { grid-template-columns: 1fr; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { min-width: 90px; }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<div style="background:#1a0a00;border-bottom:3px solid #e8b84b;padding:18px 32px;text-align:center;">
+  <div style="font-family:monospace;font-size:13px;color:#e8b84b;font-weight:700;margin-bottom:12px;">
+    📦 FULL EVIDENCE DOWNLOAD — 23GB VIDEO, PHOTO & AUDIO — PASSWORD PROTECTED
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;">
+    <a href="https://mega.nz/folder/c7whkbKY#DK8YWy3upOvYjbFTjOboRQ" target="_blank" style="background:#e8b84b;color:#000;font-family:monospace;font-weight:700;font-size:13px;padding:10px 24px;border-radius:3px;text-decoration:none;">⬇ MEGA DOWNLOAD</a>
+    <a href="https://drive.google.com/drive/folders/1FnRXUGUkSzuwfwjrVhFYj0c8wRVol8Sc?usp=drive_link" target="_blank" style="background:#4285f4;color:#fff;font-family:monospace;font-weight:700;font-size:13px;padding:10px 24px;border-radius:3px;text-decoration:none;">⬇ GOOGLE DRIVE</a>
+    <a href="mailto:vprivt1@proton.me?subject=Evidence Package Password Request — Advocate Group Care" style="background:#2a2e3d;border:1px solid #e8b84b;color:#e8b84b;font-family:monospace;font-weight:700;font-size:13px;padding:10px 24px;border-radius:3px;text-decoration:none;">🔑 REQUEST PASSWORD</a>
+  </div>
+  <div style="font-family:monospace;font-size:10px;color:#666;">
+    Password provided to verified legal counsel only &nbsp;|&nbsp; 52 documented items across 6 sections &nbsp;|&nbsp; Oct 2025 – May 2026
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-top">
+    <div>
+     
+      </div>
+      <div class="header-sub">520 Central Ave, Plainfield NJ &nbsp;|&nbsp; Oct 2025 – May 2026 &nbsp;|&nbsp; Operator: Mario Manzano (862) 220-0350</div>
+    </div>
+    <div class="header-badge">Confidential</div>
+
+  </div>
+
+  <div class="stats-bar" style="margin-top:14px; border-top:1px solid var(--border); border-bottom:none; border-radius:3px; overflow:hidden;">
+    <div class="stat"><span class="stat-num">51</span><span class="stat-label">Documented Items</span></div>
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Months Evidence</span></div>
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">Legal Tracks</span></div>
+    <div class="stat"><span class="stat-num">~40</span><span class="stat-label">Medicaid Residents</span></div>
+    <div class="stat"><span class="stat-num" style="color:var(--red)">$2.1M</span><span class="stat-label">SBA + Fed Loans</span></div>
+    <div class="stat"><span class="stat-num" style="color:var(--red)">0</span><span class="stat-label">Licenses Held</span></div>
+  </div>
+
+      
+</header>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Items</button>
+  <button class="filter-btn" data-filter="criminal">Criminal</button>
+  <button class="filter-btn" data-filter="quitam">Qui Tam / Fraud</button>
+  <button class="filter-btn" data-filter="conditions">Conditions / PI</button>
+  <button class="filter-btn" data-filter="licensing">Licensing / Fraud Infrastructure</button>
+  <button class="filter-btn" data-filter="police">Police</button>
+  <button class="filter-btn" data-filter="photo">Photo Only</button>
+  <button class="filter-btn" data-filter="video">Video Only</button>
+  <button class="filter-btn" data-filter="audio">Audio Only</button>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ═══════════════════════════════════
+       SECTION A — WhatsApp / RCS Texts
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-a">
+    <div class="section-header">
+      <div class="section-label">Section A</div>
+      <div class="section-title">Operator Notice: WhatsApp &amp; RCS Text Record</div>
+      <div class="section-desc">The following tiles document written communications sent directly to operator <strong>Mario Manzano</strong> over WhatsApp and RCS text. These messages establish that <strong>Manzano had written notice</strong> of every major condition documented in this package — felons in charge, bed bugs, crack addicts, door not locking, overdoses, assault — and his responses confirm receipt. His only substantive reply to reports of dangerous conditions was <em>"I will call Paul the carpenter"</em> regarding a door lock. The unsigned exit agreement texts (May 2026) show consciousness of liability. Everything that follows in Sections B–E must be viewed in light of this written notice record.</div>
+      <div class="section-count">5 WhatsApp / RCS notice records</div>
+    </div>
+
+    <div class="tile-grid">
+
+      <!-- A-01 -->
+      <div class="tile" data-tags="criminal quitam conditions"
+           data-media="./media/a01-whatsapp-assault-notice.jpg" data-type="photo"
+           data-title="Written Notice — Operator Read &amp; Ignored"
+           data-sub="WhatsApp · ★ Notice · Apr 12, 2026">
+        <div class="tile-thumb">
+          <img src="./media/a01-whatsapp-assault-notice.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">💬</div>
+          <span class="tile-type-badge badge-msg">WhatsApp</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">WhatsApp</span><span class="tile-notice">★ Notice</span><span class="tile-date">Apr 12, 2026</span></div>
+          <div class="tile-title">Written Notice — Operator Read &amp; Ignored</div>
+          <div class="tile-desc">WhatsApp: Reports Assault, Ativan, Felons, Bed Bugs — Mario Reads All</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- A-02 -->
+      <div class="tile" data-tags="criminal quitam"
+           data-media="./media/a02-whatsapp-carpenter-reply.jpg" data-type="photo"
+           data-title="Written Notice — Only Response to Criminal Reports"
+           data-sub="WhatsApp · ★ Notice · Apr 12, 2026">
+        <div class="tile-thumb">
+          <img src="./media/a02-whatsapp-carpenter-reply.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">💬</div>
+          <span class="tile-type-badge badge-msg">WhatsApp</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">WhatsApp</span><span class="tile-notice">★ Notice</span><span class="tile-date">Apr 12, 2026</span></div>
+          <div class="tile-title">Written Notice — Only Response to Criminal Reports</div>
+          <div class="tile-desc">Mario's Only Reply to All Reports: "I Will Call Paul the Carpenter"</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- A-03 -->
+      <div class="tile" data-tags="criminal quitam conditions"
+           data-media="./media/a03-rcs-backup-text.jpg" data-type="photo"
+           data-title="Written Notice — Dual Platform Delivery Confirmed"
+           data-sub="RCS Text · Apr 12, 2026">
+        <div class="tile-thumb">
+          <img src="./media/a03-rcs-backup-text.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">💬</div>
+          <span class="tile-type-badge badge-msg">RCS Text</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">RCS Text</span><span class="tile-date">Apr 12, 2026</span></div>
+          <div class="tile-title">Written Notice — Dual Platform Delivery Confirmed</div>
+          <div class="tile-desc">RCS Backup Text — Sent to Eliminate "Didn't Receive It" Defense</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- A-04 -->
+      <div class="tile" data-tags="conditions"
+           data-media="./media/a04-rcs-heat-danger.jpg" data-type="photo"
+           data-title="Written Notice — Heat Danger / Elder Risk Acknowledged"
+           data-sub="RCS Text · May 2026">
+        <div class="tile-thumb">
+          <img src="./media/a04-rcs-heat-danger.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">💬</div>
+          <span class="tile-type-badge badge-msg">RCS Text</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">RCS Text</span><span class="tile-date">May 2026</span></div>
+          <div class="tile-title">Written Notice — Heat Danger / Elder Risk Acknowledged</div>
+          <div class="tile-desc">Mario Acknowledges 99°F Heat Risk to Elderly Resident — Takes No Action</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- A-05 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/a05-rcs-exit-agreement.jpg" data-type="photo"
+           data-title="Consciousness of Liability — Agreement Never Signed"
+           data-sub="RCS Text · ★ Liability · May 2026 — Unsigned">
+        <div class="tile-thumb">
+          <img src="./media/a05-rcs-exit-agreement.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">💬</div>
+          <span class="tile-type-badge badge-msg">RCS Text</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">RCS Text</span><span class="tile-notice" style="color:var(--red);background:rgba(224,82,82,0.08);border-color:rgba(224,82,82,0.25);">★ Liability</span><span class="tile-date">May 2026 — Unsigned</span></div>
+          <div class="tile-title">Consciousness of Liability — Agreement Never Signed</div>
+          <div class="tile-desc">Exit Agreement Proposed — Mario Never Signs — Liability Admission</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+    </div><!-- /section-a tile-grid -->
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION B — Criminal Conduct
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-b">
+    <div class="section-header section-b-header">
+      <div class="section-label">Section B</div>
+      <div class="section-title">Criminal Conduct — Strongest Video Evidence</div>
+      <div class="section-desc">Video and audio documentation of criminal conduct on premises. Each clip is cross-referenced with written notice sent to Manzano.</div>
+    </div>
+    <div class="tile-grid">
+
+      <!-- B-01 -->
+      <div class="tile" data-tags="criminal video"
+           data-media="./media/b01-emt-charlie-in-charge.mp4" data-type="video"
+           data-title="Criminal — Strongest Single Clip"
+           data-sub="Video · ★ Key · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b01-emt-charlie-in-charge.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Strongest Single Clip</div>
+          <div class="tile-desc">EMT: "OK Charlie You're in Charge" — No Staff Present</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-02 -->
+      <div class="tile" data-tags="criminal quitam video"
+           data-media="./media/b02-operator-yeah-admission.mp4" data-type="video"
+           data-title="Criminal + Qui Tam — Operator Admission"
+           data-sub="Video · ★ Key · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b02-operator-yeah-admission.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal + Qui Tam — Operator Admission</div>
+          <div class="tile-desc">Operator On Camera: "Yeah" — Acknowledges Felons &amp; Crack Addicts</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-03 -->
+      <div class="tile" data-tags="criminal video"
+           data-media="./media/b03-nurse-walks-away.mp4" data-type="video"
+           data-title="Criminal + Malpractice"
+           data-sub="Video · ★ Key · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b03-nurse-walks-away.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal + Malpractice</div>
+          <div class="tile-desc">Nurse Witnesses Felon Assault — Walks Away Without Intervening</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-04 -->
+      <div class="tile" data-tags="criminal video"
+           data-media="./media/b04-body-wheeled-out.mp4" data-type="video"
+           data-title="Criminal — Body Wheeled Out From Window"
+           data-sub="Video · ★ Key · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b04-body-wheeled-out.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Body Wheeled Out From Window</div>
+          <div class="tile-desc">Body Wheeled Out From Window — On Video</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-05 -->
+      <div class="tile" data-tags="criminal quitam video"
+           data-media="./media/b05-felon-ativan.mp4" data-type="video"
+           data-title="Criminal + Qui Tam"
+           data-sub="Video · 7 Months">
+        <div class="tile-thumb">
+          <video src="./media/b05-felon-ativan.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">Criminal + Qui Tam</div>
+          <div class="tile-desc">Felon Handling Controlled Substances (Ativan) — On Video</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-06 -->
+      <div class="tile" data-tags="criminal video"
+           data-media="./media/b06-turner-arrested-back.mp4" data-type="video"
+           data-title="Criminal — Pattern Proof"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b06-turner-arrested-back.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Pattern Proof</div>
+          <div class="tile-desc">Turner Arrested — Back Next Day — Restored to Authority</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-07 -->
+      <div class="tile" data-tags="criminal audio"
+           data-media="./media/b07-accomplice-admits-ed-beaten.m4a" data-type="audio"
+           data-title="Criminal — Cover-Up Audio"
+           data-sub="Audio · During Stay">
+        <div class="tile-thumb">
+          <div class="audio-wave">
+            <div class="wave-bar" style="height:30%;animation-delay:0s"></div><div class="wave-bar" style="height:65%;animation-delay:0.1s"></div>
+            <div class="wave-bar" style="height:45%;animation-delay:0.2s"></div><div class="wave-bar" style="height:80%;animation-delay:0.3s"></div>
+            <div class="wave-bar" style="height:55%;animation-delay:0.4s"></div><div class="wave-bar" style="height:70%;animation-delay:0.5s"></div>
+            <div class="wave-bar" style="height:40%;animation-delay:0.6s"></div><div class="wave-bar" style="height:60%;animation-delay:0.7s"></div>
+            <div class="wave-bar" style="height:75%;animation-delay:0.8s"></div><div class="wave-bar" style="height:50%;animation-delay:0.9s"></div>
+            <div class="wave-bar" style="height:85%;animation-delay:1.0s"></div><div class="wave-bar" style="height:35%;animation-delay:1.1s"></div>
+          </div>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-audio">Audio</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Audio</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Cover-Up Audio</div>
+          <div class="tile-desc">Accomplice Admits Ed Was Beaten — Told to Stay Silent</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-08 -->
+      <div class="tile" data-tags="conditions criminal video"
+           data-media="./media/b08-operator-threatens-eviction.mp4" data-type="video"
+           data-title="PI — Retaliation on Camera"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b08-operator-threatens-eviction.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">PI — Retaliation on Camera</div>
+          <div class="tile-desc">Operator Threatens Resident — Calls Eviction Lawyer On Camera</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-09 -->
+      <div class="tile" data-tags="conditions video"
+           data-media="./media/b09-mobile-crisis-retaliation.mp4" data-type="video"
+           data-title="PI — Retaliation Pattern"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b09-mobile-crisis-retaliation.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">PI — Retaliation Pattern</div>
+          <div class="tile-desc">Mobile Crisis Used as Retaliatory Eviction Tool</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-10 -->
+      <div class="tile" data-tags="criminal video"
+           data-media="./media/b10-operator-coverup.mp4" data-type="video"
+           data-title="Criminal — Cover-Up"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b10-operator-coverup.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Cover-Up</div>
+          <div class="tile-desc">Operator Covered Up Accomplice Admission After Turner Arrest</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-11 -->
+      <div class="tile" data-tags="conditions video"
+           data-media="./media/b11-assault-victim-moved-in.mp4" data-type="video"
+           data-title="PI — Retaliation"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b11-assault-victim-moved-in.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">PI — Retaliation</div>
+          <div class="tile-desc">Operator Moves Assault Victim Into Assailant's Room</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-12 -->
+      <div class="tile" data-tags="conditions criminal"
+           data-media="./media/b12-felon-security-note.jpg" data-type="photo"
+           data-title="PI — Hostile Environment"
+           data-sub="Photo · Vacation Period">
+        <div class="tile-thumb">
+          <img src="./media/b12-felon-security-note.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">Vacation Period</span></div>
+          <div class="tile-title">PI — Hostile Environment</div>
+          <div class="tile-desc">Felon "Security" Threatening Note Posted During Operator Vacation</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-13 -->
+      <div class="tile" data-tags="criminal"
+           data-media="./media/b13-cross-richard-assault-trapped.mp4" data-type="video"
+           data-title="Criminal — Second Assault: Richard Traps Resident, Hits Phone"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b13-cross-richard-assault-trapped.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Second Assault: Richard Traps Resident, Hits Phone</div>
+          <div class="tile-desc">Cross/Richard Verbally Assaults, Traps in Room, Hits Phone — Mario's Son Involved — New Lock Falls Out Same Night</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-14 -->
+      <div class="tile" data-tags="criminal"
+           data-media="./media/b14-malik-david-dangerous-placements.mp4" data-type="video"
+           data-title="Criminal — Pattern: Dangerous Roommate Placements, No Action"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b14-malik-david-dangerous-placements.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Pattern: Dangerous Roommate Placements, No Action</div>
+          <div class="tile-desc">Malik Green (2nd), David (1st) — Each Threatens Resident Mid-Stay — Operator Notified, Does Nothing Both Times</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-15 -->
+      <div class="tile" data-tags="criminal police"
+           data-media="./media/b15-od-crack-cops-lights.mp4" data-type="video"
+           data-title="Criminal — Crack OD on Premises, Police Respond, No Staff"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b15-od-crack-cops-lights.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Crack OD on Premises, Police Respond, No Staff</div>
+          <div class="tile-desc">Cops Lights at Night — Overdose on Crack — 3rd Floor — No Landlord, No Nurse — Charlie (Felon, 71, Alcoholic) In Charge</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- B-16 -->
+      <div class="tile" data-tags="criminal"
+           data-media="./media/b16-cleaning-lady-room-door-shut.mp4" data-type="video"
+           data-title="Criminal — Unauthorized Entry: Cleaning Lady in Room, Door Shut"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/b16-cleaning-lady-room-door-shut.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Criminal — Unauthorized Entry: Cleaning Lady in Room, Door Shut</div>
+          <div class="tile-desc">Cleaning Lady Enters Room 9 Alone, Shuts Door — On Phone — No Consent — Privacy Violation Documented</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION C — Qui Tam / Medicaid Fraud
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-c">
+    <div class="section-header section-c-header">
+      <div class="section-label">Section C</div>
+      <div class="section-title">Qui Tam / Medicaid Fraud — Billed Services Not Rendered</div>
+      <div class="section-desc">Documentation of Medicaid billing for services not rendered across approximately 80 residents.</div>
+    </div>
+    <div class="tile-grid">
+
+      <!-- C-01 -->
+      <div class="tile" data-tags="quitam video"
+           data-media="./media/c01-operator-absent-philippines.mp4" data-type="video"
+           data-title="Qui Tam — Billed for Supervision Not Rendered"
+           data-sub="Video · ~2 Months">
+        <div class="tile-thumb">
+          <video src="./media/c01-operator-absent-philippines.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">~2 Months</span></div>
+          <div class="tile-title">Qui Tam — Billed for Supervision Not Rendered</div>
+          <div class="tile-desc">Operator Absent 2 Months (Philippines) — Medicaid Billed Throughout</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-02 -->
+      <div class="tile" data-tags="quitam"
+           data-media="./media/c02-malnutrition-fruit-loops.jpg" data-type="photo"
+           data-title="Qui Tam — Billed as Proper Nutrition"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/c02-malnutrition-fruit-loops.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">Qui Tam — Billed as Proper Nutrition</div>
+          <div class="tile-desc">Malnutrition — Fruit Loops &amp; Bologna — Billed as Proper Care</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-03 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c03-meds-alcohol-trash.jpg" data-type="photo"
+           data-title="Qui Tam + Criminal"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/c03-meds-alcohol-trash.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">Qui Tam + Criminal</div>
+          <div class="tile-desc">Prescription Meds + Alcohol Mixed in Bathroom Trash</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-04 -->
+      <div class="tile" data-tags="quitam"
+           data-media="./media/c04-ran-out-of-meds.pdf" data-type="doc"
+           data-title="Qui Tam — Billed Service Not Rendered"
+           data-sub="Document · Multiple">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">📄</div>
+          <span class="tile-type-badge badge-doc">Doc</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Document</span><span class="tile-date">Multiple</span></div>
+          <div class="tile-title">Qui Tam — Billed Service Not Rendered</div>
+          <div class="tile-desc">Resident Ran Out of Medications Repeatedly — Facility Billed for Mgmt</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-05 (medication series) -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c05-audrey-james-trintellix-if-not-on-tray.mp4" data-type="video"
+           data-title="Qui Tam + Criminal — Nurse Admits Med Mismanagement On Record"
+           data-sub="Video · Mar 20, 2026 · ★ Key">
+        <div class="tile-thumb">
+          <video src="./media/c05-audrey-james-trintellix-if-not-on-tray.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">Mar 20, 2026</span></div>
+          <div class="tile-title">Qui Tam + Criminal — Nurse Admits Med Mismanagement On Record</div>
+          <div class="tile-desc">Nurse Audrey James: "If It's Not on the Tray You Don't Have It" — Admits Trintellix Not Dispensed — Medicaid Billed for Medication Management Not Rendered</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-06 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c06-mario-unlocks-med-drawer.mp4" data-type="video"
+           data-title="Qui Tam + Criminal — Unlicensed Landlord Controls All Resident Medications"
+           data-sub="Video · During Stay · ★ Key">
+        <div class="tile-thumb">
+          <video src="./media/c06-mario-unlocks-med-drawer.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Qui Tam + Criminal — Unlicensed Landlord Controls All Resident Medications</div>
+          <div class="tile-desc">Mario Manzano (Unlicensed) On Camera Unlocking Med Drawer — Sole Keyholder to All Resident Controlled &amp; Psychiatric Medications — Federal Licensing Violation</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-07 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c07-empty-trintellix-bubble-pack.jpg" data-type="photo"
+           data-title="Qui Tam — Physical Proof: Empty Trintellix Bubble Pack, Mar 20"
+           data-sub="Photo · Mar 20, 2026">
+        <div class="tile-thumb">
+          <img src="./media/c07-empty-trintellix-bubble-pack.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">Mar 20, 2026</span></div>
+          <div class="tile-title">Qui Tam — Physical Proof: Empty Trintellix Bubble Pack</div>
+          <div class="tile-desc">Empty Bubble Pack — Trintellix Run Out Mar 20 — Physical Evidence Medicaid Billed for Medication Management While Resident Went Without Psychiatric Medication</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-08 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c08-self-administered-meds-access.mp4" data-type="video"
+           data-title="Qui Tam — Resident Self-Administering Meds, Unsupervised Access"
+           data-sub="Video · Multiple Instances">
+        <div class="tile-thumb">
+          <video src="./media/c08-self-administered-meds-access.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">Multiple Instances</span></div>
+          <div class="tile-title">Qui Tam — Resident Self-Administering Meds, Unsupervised Access</div>
+          <div class="tile-desc">Resident Had Full Unsupervised Access to Own Medications — Self-Administered Multiple Times — No Licensed Staff Present — Medicaid Billed for Supervised Medication Administration</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-09 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c09-tenants-self-administer-mario-present.mp4" data-type="video"
+           data-title="Qui Tam — All Tenants Self-Administering While Mario Present"
+           data-sub="Video · During Stay · ★ Key">
+        <div class="tile-thumb">
+          <video src="./media/c09-tenants-self-administer-mario-present.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-notice">★ Key</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Qui Tam — All Tenants Self-Administering While Mario Present</div>
+          <div class="tile-desc">Multiple Tenants Self-Administering Their Own Medications While Operator Mario Is On Premises — No Licensed Nurse Supervising — Medicaid Billed for Professional Medication Management Across All ~80 Residents</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+
+      <!-- C-10 -->
+      <div class="tile" data-tags="quitam criminal"
+           data-media="./media/c10-dr-g-ignored-whistleblower-10days.mp4" data-type="video"
+           data-title="Qui Tam + Malpractice — Psychiatrist Ignored Whistleblower Report 10 Days"
+           data-sub="Video · May 2026">
+        <div class="tile-thumb">
+          <video src="./media/c10-dr-g-ignored-whistleblower-10days.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">May 2026</span></div>
+          <div class="tile-title">Qui Tam + Malpractice — Psychiatrist Ignored Whistleblower Report 10 Days</div>
+          <div class="tile-desc">Dr. G (Psych) Sent Whistleblower Zip Package — Ignored for 10 Days — Phone Message Documents Events Trinitas Did Not Act On — Malpractice &amp; Retaliation</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- C-11 -->
+      <div class="tile" data-tags="quitam conditions"
+           data-media="./media/c11-leonard-neglected-naked-fruit-loops.jpg" data-type="photo"
+           data-title="Qui Tam — Named Resident: Leonard, Neglected Schizophrenic Diabetic"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/c11-leonard-neglected-naked-fruit-loops.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">Qui Tam — Named Resident: Leonard, Neglected Schizophrenic Diabetic</div>
+          <div class="tile-desc">Leonard ("SpongeBob") — Schizophrenic Diabetic — Found Naked, Unsupervised, Door Open, Eating Sugary Fruit Loops — Medicaid Billed for Supervision &amp; Proper Nutrition Not Rendered</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION D — Conditions / PI
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-d">
+    <div class="section-header section-d-header">
+      <div class="section-label">Section D</div>
+      <div class="section-title">Conditions / Personal Injury — 7 Months Documented</div>
+      <div class="section-desc">Physical conditions and hazards documented over 7 months supporting personal injury claims.</div>
+    </div>
+    <div class="tile-grid">
+
+      <!-- D-01 -->
+      <div class="tile" data-tags="conditions"
+           data-media="./media/d01-bed-bug-welts.jpg" data-type="photo"
+           data-title="PI — 7-Month Ongoing Physical Injury"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/d01-bed-bug-welts.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">PI — 7-Month Ongoing Physical Injury</div>
+          <div class="tile-desc">Bed Bug Infestation — Welts, Scabs &amp; Permanent Scarring — 7 Months</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-02 -->
+      <div class="tile" data-tags="conditions quitam"
+           data-media="./media/d02-cockroach-dead-mouse.jpg" data-type="photo"
+           data-title="PI + Qui Tam — Infestation"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/d02-cockroach-dead-mouse.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">PI + Qui Tam — Infestation</div>
+          <div class="tile-desc">Cockroach on Resident's Leg — Dead Mouse in Hallway</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-03 -->
+      <div class="tile" data-tags="conditions quitam"
+           data-media="./media/d03-unsanitary-bathrooms.jpg" data-type="photo"
+           data-title="PI + Qui Tam — Conditions"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/d03-unsanitary-bathrooms.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">PI + Qui Tam — Conditions</div>
+          <div class="tile-desc">Unsanitary Bathrooms + Caution Tape Sink — 7 Months Unresolved</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-04 -->
+      <div class="tile" data-tags="conditions"
+           data-media="./media/d04-loose-stairs-stitches.jpg" data-type="photo"
+           data-title="PI — Physical Injury"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/d04-loose-stairs-stitches.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">PI — Physical Injury</div>
+          <div class="tile-desc">Loose Stairs — Tenant Fall Required Stitches</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-05 -->
+      <div class="tile" data-tags="conditions criminal"
+           data-media="./media/d05-heat-shutoff-feb-overnight.jpg" data-type="photo"
+           data-title="PI + Elder Abuse — Heat Shut Off Feb Overnight, Long-Term"
+           data-sub="Photo · Feb 2026">
+        <div class="tile-thumb">
+          <img src="./media/d05-heat-shutoff-feb-overnight.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">Feb 2026</span></div>
+          <div class="tile-title">PI + Elder Abuse — Heat Shut Off Feb Overnight, Long-Term</div>
+          <div class="tile-desc">Heat Shut Off Feb — Overnight — Long-Term — Nurse Audrey James on Record — Elderly Residents at Risk — Operator Had Written Notice (See A-04)</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-06 -->
+      <div class="tile" data-tags="conditions"
+           data-media="./media/d06-mice-mouse-hole-dead-hall.jpg" data-type="photo"
+           data-title="PI + Qui Tam — Mouse Hole in Wall, Dead Mouse in Hallway"
+           data-sub="Photo · 7 Months">
+        <div class="tile-thumb">
+          <img src="./media/d06-mice-mouse-hole-dead-hall.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">7 Months</span></div>
+          <div class="tile-title">PI + Qui Tam — Mouse Hole in Wall, Dead Mouse in Hallway</div>
+          <div class="tile-desc">Active Mouse Hole Scratching in Wall — Dead Mouse Found in Hallway — Ongoing Infestation, No Remediation — Medicaid Billed for Safe Housing</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- D-07 -->
+      <div class="tile" data-tags="conditions criminal"
+           data-media="./media/d07-roof-trash-beer-thrown-apr17.jpg" data-type="photo"
+           data-title="PI — Hostile Environment: Trash &amp; Beer Thrown from 3rd Floor Window"
+           data-sub="Photo · Apr 17, 2026">
+        <div class="tile-thumb">
+          <img src="./media/d07-roof-trash-beer-thrown-apr17.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📸</div>
+          <span class="tile-type-badge badge-photo">Photo</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Photo</span><span class="tile-date">Apr 17, 2026</span></div>
+          <div class="tile-title">PI — Hostile Environment: Trash &amp; Beer Thrown from 3rd Floor Window</div>
+          <div class="tile-desc">Roof Trash and Beer Poured — Thrown from 3rd Floor Window Apr 17 — Hostile Environment, Property Destruction, No Operator Response</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION E — Police Conduct
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-e">
+    <div class="section-header section-e-header">
+      <div class="section-label">Section E</div>
+      <div class="section-title">Police Conduct — Dismissal, Prior Knowledge, Victim Blaming</div>
+      <div class="section-desc">Video documentation of police conduct on scene: dismissal of complaints, established familiarity with operator, obstruction, and victim blaming.</div>
+    </div>
+    <div class="tile-grid">
+
+      <!-- E-01 -->
+      <div class="tile" data-tags="police video"
+           data-media="./media/e01-take-it-up-governor.mp4" data-type="video"
+           data-title="Police — Documented Dismissal On Camera"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/e01-take-it-up-governor.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Police — Documented Dismissal On Camera</div>
+          <div class="tile-desc">Officer On Camera: "Take It Up With the Governor"</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- E-02 -->
+      <div class="tile" data-tags="police video"
+           data-media="./media/e02-police-call-mario.mp4" data-type="video"
+           data-title="Police — Established Prior Familiarity"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/e02-police-call-mario.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Police — Established Prior Familiarity</div>
+          <div class="tile-desc">Police Call Operator "Mario" — Establishes Long-Term Familiarity</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- E-03 -->
+      <div class="tile" data-tags="police video"
+           data-media="./media/e03-refused-body-cam.mp4" data-type="video"
+           data-title="Police — Obstruction"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/e03-refused-body-cam.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Police — Obstruction</div>
+          <div class="tile-desc">Police Refused Body Cam Number — Documented On Camera</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- E-04 -->
+      <div class="tile" data-tags="police criminal video"
+           data-media="./media/e04-police-viewed-assault-no-action.mp4" data-type="video"
+           data-title="Police — Prior Knowledge, No Action Taken"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/e04-police-viewed-assault-no-action.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Police — Prior Knowledge, No Action Taken</div>
+          <div class="tile-desc">Police Viewed Assault Video — Took No Action</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+      <!-- E-05 -->
+      <div class="tile" data-tags="police video"
+           data-media="./media/e05-police-blamed-victim.mp4" data-type="video"
+           data-title="Police — Victim Blaming On Camera"
+           data-sub="Video · During Stay">
+        <div class="tile-thumb">
+          <video src="./media/e05-police-blamed-victim.mp4" preload="metadata" muted></video>
+          <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <span class="tile-type-badge badge-video">Video</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Video</span><span class="tile-date">During Stay</span></div>
+          <div class="tile-title">Police — Victim Blaming On Camera</div>
+          <div class="tile-desc">Police Blamed Victim for Not Leaving Dangerous Facility</div>
+          <div class="tile-status">✓ Loaded</div>
+        </div>
+      </div>
+
+  <!-- ═══════════════════════════════════
+       SECTION F — Licensing, Ownership & Fraud Infrastructure
+  ═══════════════════════════════════ -->
+  <section class="section" id="section-f">
+    <div class="section-header section-f-header">
+      <div class="section-label">Section F — Attorney Briefing</div>
+      <div class="section-title">Licensing, Ownership &amp; Fraud Infrastructure</div>
+      <div class="section-desc">Public records establishing that Advocate Group Care LLC operated two unlicensed residential care facilities for 15+ years, billed Medicaid for licensed services never legally authorized to provide, financed the operation with a federal SBA loan, and marketed false claims of licensed care publicly. This section contains no media files — all content is drawn from public records retrieved May 2026 and is independently verifiable by any attorney within minutes.</div>
+    </div>
+    <div class="tile-grid">
+
+      <!-- F-01 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f01-nj-doh-search-no-license.jpg" data-type="photo"
+           data-title="NJ DOH — Advocate Group Care NOT on Licensed Facility List"
+           data-sub="Screenshot · NJ Dept of Health · May 2026 · ★ Key">
+        <div class="tile-thumb">
+          <img src="./media/f01-nj-doh-search-no-license.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">🏛️</div>
+          <span class="tile-type-badge badge-doc">Public Record</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">NJ DOH</span><span class="tile-notice">★ Key</span><span class="tile-date">May 2026</span></div>
+          <div class="tile-title">NJ DOH — NOT on Licensed Facility List</div>
+          <div class="tile-desc">NJ Department of Health Long-Term Care Facility Search, Union County, All Types — 44 Results Returned — Advocate Group Care Absent. Aristacare at Norwood Terrace (Plainfield) and Complete Care at Plainfield appear. Advocate Group Care does not. Screenshot shows URL bar and full results list.</div>
+          <div class="tile-status">⚠ Screenshot Needed — nj.gov/health</div>
+        </div>
+      </div>
+
+      <!-- F-02 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f02-nj-dca-rooming-house-no-registration.jpg" data-type="photo"
+           data-title="NJ DCA — 520 &amp; 602 Central Ave NOT Registered as Rooming House"
+           data-sub="Screenshot · NJ Dept of Community Affairs · May 2026 · ★ Key">
+        <div class="tile-thumb">
+          <img src="./media/f02-nj-dca-rooming-house-no-registration.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">🏛️</div>
+          <span class="tile-type-badge badge-doc">Public Record</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">NJ DCA</span><span class="tile-notice">★ Key</span><span class="tile-date">May 2026</span></div>
+          <div class="tile-title">NJ DCA — Buildings Not Registered Even as Rooming House</div>
+          <div class="tile-desc">NJ Dept of Community Affairs Hotel/Rooming/Boarding House Registry — Search of All Central Ave Properties in Plainfield City, Union County — 18 Results — Neither 520 nor 602 Central Ave appears. Even the minimum required rooming house registration is absent. Screenshot shows full results list with URL visible.</div>
+          <div class="tile-status">⚠ Screenshot Needed — NJ DCA registry</div>
+        </div>
+      </div>
+
+      <!-- F-03 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f03-yellowpages-false-advertising.jpg" data-type="photo"
+           data-title="False Advertising — Public Claims of Licensed Care, RN on Staff"
+           data-sub="Screenshot · YellowPages.com · ★ Key">
+        <div class="tile-thumb">
+          <img src="./media/f03-yellowpages-false-advertising.jpg" alt="" class="thumb-img">
+          <div class="img-fallback">📋</div>
+          <span class="tile-type-badge badge-doc">Public Record</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">YellowPages</span><span class="tile-notice">★ Key</span><span class="tile-date">Active Listing</span></div>
+          <div class="tile-title">False Advertising — 8 Specific False Claims of Licensed Care</div>
+          <div class="tile-desc">Public listing at yellowpages.com claims: "licensed supervision of medication and physicians orders" · "Registered Nurse on Staff" · "Medication Administration" · "24 hour Emergency help" · "Three meals a day" · "Daily home cleaning" · "Secure Entrance" · "Safe nurturing environment" — All directly contradicted by Sections A–E. Used to attract Medicaid placements. Fraudulent inducement.</div>
+          <div class="tile-status">⚠ Screenshot Needed — yellowpages.com listing</div>
+        </div>
+      </div>
+
+      <!-- F-04 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f04-union-county-clerk-mortgage-2010.pdf" data-type="doc"
+           data-title="Union County Clerk — SBA Mortgage 2010: $1.1M Federal Loan"
+           data-sub="Public Record · Union County Clerk · Mar 29, 2010 · ★ Key">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">📑</div>
+          <span class="tile-type-badge badge-doc">Deed Record</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">County Clerk</span><span class="tile-notice">★ Key</span><span class="tile-date">Mar 29, 2010</span></div>
+          <div class="tile-title">SBA Mortgage 2010 — $1.1M Federal Loan to Buy Both Buildings</div>
+          <div class="tile-desc">Mortgage Inst# 508352, recorded Union County Clerk Mar 29 2010. Mortgagor: Advocate Group Care LLC. Mortgagee: Shore Community Bank. Loan: $1,100,000 SBA Note. Properties: 518-522 Central Ave (Block 708 Lot 6) and 600-604 Central Ave (Block 709 Lot 2). Mario Manzano and Merlita Manzano, 26 Albert Terrace Bloomfield NJ 07003, signed personal guaranty. Federal SBA money used to finance an unlicensed Medicaid fraud operation.</div>
+          <div class="tile-status">✓ PDF Retrieved — Union County Clerk</div>
+        </div>
+      </div>
+
+      <!-- F-05 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f05-union-county-clerk-mortgage-2019.pdf" data-type="doc"
+           data-title="Union County Clerk — Investors Bank Mortgage 2019: $1M Refinance"
+           data-sub="Public Record · Union County Clerk · Dec 3, 2019">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">📑</div>
+          <span class="tile-type-badge badge-doc">Deed Record</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">County Clerk</span><span class="tile-date">Dec 3, 2019</span></div>
+          <div class="tile-title">Investors Bank Mortgage 2019 — $1M Refinance, Same Properties</div>
+          <div class="tile-desc">Mortgage Inst# 682749, recorded Union County Clerk Dec 3 2019. Mortgagor: Advocate Group Care LLC, 26 Albert Terrace Bloomfield NJ 07003. Mortgagee: Investors Bank, 101 JFK Parkway Short Hills NJ. Loan: $1,000,000. Same two properties cross-collateralized: 518-522 and 600-604 Central Ave Plainfield (Block 708 Lot 6 and Block 709 Lot 2). Operation was still unlicensed at time of refinance.</div>
+          <div class="tile-status">✓ PDF Retrieved — Union County Clerk</div>
+        </div>
+      </div>
+
+      <!-- F-06 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f06-assignment-of-leases-rents.pdf" data-type="doc"
+           data-title="Assignment of Leases &amp; Rents — All Resident Payments Pledged to Banks"
+           data-sub="Public Record · Union County Clerk · 2010 &amp; 2019">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">📑</div>
+          <span class="tile-type-badge badge-doc">Deed Record</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">County Clerk</span><span class="tile-date">2010 &amp; 2019</span></div>
+          <div class="tile-title">Assignment of Leases &amp; Rents — Resident Payments Pledged as Collateral</div>
+          <div class="tile-desc">Both Shore Community Bank (2010) and Investors Bank (2019) required Advocate Group Care LLC to assign all leases and rents on both properties as loan collateral. This means all resident payments — including Medicaid reimbursements — were pledged to the banks. Both banks are notifiable parties in any fraud action affecting the properties' income stream.</div>
+          <div class="tile-status">✓ PDF Retrieved — Union County Clerk</div>
+        </div>
+      </div>
+
+      <!-- F-07 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f07-personal-guaranty-merlita.pdf" data-type="doc"
+           data-title="Personal Guaranty — Mario &amp; Merlita Manzano Personally Liable"
+           data-sub="Public Record · Union County Clerk · Mar 29, 2010">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">📑</div>
+          <span class="tile-type-badge badge-doc">Deed Record</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">County Clerk</span><span class="tile-date">Mar 29, 2010</span></div>
+          <div class="tile-title">Personal Guaranty — Both Manzanos Personally Liable</div>
+          <div class="tile-desc">Mario Manzano AND Merlita Manzano, residing at 26 Albert Terrace Bloomfield NJ 07003, personally guaranteed the $1.1M SBA loan obligations of Advocate Group Care LLC. Their personal home and personal assets are pledged. LLC veil piercing is straightforward given: no license, no regulatory compliance, personal operation of fraudulent Medicaid scheme.</div>
+          <div class="tile-status">✓ PDF Retrieved — Union County Clerk</div>
+        </div>
+      </div>
+
+      <!-- F-08 -->
+      <div class="tile" data-tags="licensing quitam"
+           data-media="./media/f08-property-ownership-summary.jpg" data-type="photo"
+           data-title="Property Ownership Summary — 2 Buildings, $2.1M Financed, 15 Years"
+           data-sub="Summary · Public Records Compiled May 2026">
+        <div class="tile-thumb">
+          <div class="img-fallback visible">🏠</div>
+          <span class="tile-type-badge badge-doc">Summary</span>
+          <span class="star-badge">⭐</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-meta"><span class="tile-platform">Summary</span><span class="tile-notice">★ Key</span><span class="tile-date">2010–2026</span></div>
+          <div class="tile-title">Fraud Infrastructure Summary — 15-Year Unlicensed Operation</div>
+          <div class="tile-desc">
+            OPERATOR: Mario D. Manzano · LLC: Advocate Group Care LLC
+            HOME: 26 Albert Terrace, Bloomfield NJ 07003
+            BUILDINGS: 518-522 Central Ave (men) + 600-604 Central Ave (women), Plainfield NJ
+            PURCHASED: March 23, 2010 from St Rita Holding Co. Inc. + Queen Mary Holding Co. Inc.
+            FINANCING: $1.1M SBA loan (Shore Community Bank 2010) + $1M refinance (Investors Bank 2019)
+            NJ DOH LICENSE: NONE · NJ DCA REGISTRATION: NONE
+            MEDICAID BILLING: ~160 residents across 2 buildings, 15 years
+            ADVERTISED: "Licensed supervision" "RN on Staff" "Safe environment" — all false
+          </div>
+          <div class="tile-status">✓ All facts from public records</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ══════════════════════════════════════
+     LIGHTBOX
+══════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <div class="lb-header">
+      <div class="lb-title-wrap">
+        <div class="lb-title" id="lb-title">Title</div>
+        <div class="lb-sub" id="lb-sub">Subtitle</div>
+      </div>
+      <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    </div>
+    <div class="lb-media" id="lb-media">
+      <!-- content injected by JS -->
+    </div>
+    <div class="lb-footer">
+      <div class="lb-nav">
+        <button class="lb-nav-btn" id="lb-prev">← Prev</button>
+        <button class="lb-nav-btn" id="lb-next">Next →</button>
+      </div>
+      <div class="lb-counter" id="lb-counter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── FILTER ──────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const allTiles   = document.querySelectorAll('.tile');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      allTiles.forEach(t => {
+        if (f === 'all') {
+          t.style.display = '';
+        } else {
+          const tags = (t.dataset.tags || '').split(' ');
+          t.style.display = tags.includes(f) ? '' : 'none';
+        }
+      });
+    });
+  });
+
+  // ── LIGHTBOX ─────────────────────────────────────────
+  const lightbox = document.getElementById('lightbox');
+  const lbMedia  = document.getElementById('lb-media');
+  const lbTitle  = document.getElementById('lb-title');
+  const lbSub    = document.getElementById('lb-sub');
+  const lbClose  = document.getElementById('lb-close');
+  const lbPrev   = document.getElementById('lb-prev');
+  const lbNext   = document.getElementById('lb-next');
+  const lbCount  = document.getElementById('lb-counter');
+
+  let currentIdx = 0;
+  let visibleTiles = [];
+
+  function getVisibleTiles() {
+    return Array.from(allTiles).filter(t => t.style.display !== 'none');
+  }
+
+  function stopMedia() {
+    const vid = lbMedia.querySelector('video');
+    const aud = lbMedia.querySelector('audio');
+    if (vid) { vid.pause(); vid.currentTime = 0; }
+    if (aud) { aud.pause(); aud.currentTime = 0; }
+  }
+
+  function openLightbox(tile, idx) {
+    visibleTiles = getVisibleTiles();
+    currentIdx   = idx;
+    renderLightbox(tile);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLightbox(tile) {
+    stopMedia();
+    lbMedia.innerHTML = '';
+
+    const type  = tile.dataset.type  || 'photo';
+    const media = tile.dataset.media || '';
+    const title = tile.dataset.title || '';
+    const sub   = tile.dataset.sub   || '';
+
+    lbTitle.textContent = title;
+    lbSub.textContent   = sub;
+    lbCount.textContent = `${currentIdx + 1} / ${visibleTiles.length}`;
+    lbPrev.disabled     = currentIdx === 0;
+    lbNext.disabled     = currentIdx === visibleTiles.length - 1;
+
+    if (type === 'video') {
+      const v = document.createElement('video');
+      v.src      = media;
+      v.controls = true;
+      v.autoplay = true;
+      v.style.maxWidth  = '100%';
+      v.style.maxHeight = '70vh';
+      lbMedia.appendChild(v);
+
+    } else if (type === 'audio') {
+      const a = document.createElement('audio');
+      a.src      = media;
+      a.controls = true;
+      a.autoplay = true;
+      a.style.width   = '90%';
+      a.style.margin  = '40px auto';
+      a.style.display = 'block';
+      lbMedia.appendChild(a);
+
+    } else if (type === 'doc') {
+      // Try iframe first (works for PDFs); show fallback link
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'width:100%; height:70vh; position:relative;';
+      const ifr = document.createElement('iframe');
+      ifr.src   = media;
+      ifr.style.cssText = 'width:100%; height:100%; border:none;';
+      ifr.title = title;
+      // Fallback link in case browser blocks iframe
+      const fallback = document.createElement('div');
+      fallback.style.cssText = 'position:absolute; bottom:12px; right:16px; z-index:2;';
+      const link = document.createElement('a');
+      link.href   = media;
+      link.target = '_blank';
+      link.rel    = 'noopener';
+      link.textContent = '↗ Open in new tab';
+      link.style.cssText = 'font-family:var(--mono); font-size:12px; color:var(--accent); text-decoration:none; background:var(--bg2); padding:4px 10px; border:1px solid var(--border); border-radius:2px;';
+      fallback.appendChild(link);
+      wrap.appendChild(ifr);
+      wrap.appendChild(fallback);
+      lbMedia.appendChild(wrap);
+
+    } else {
+      // photo / default
+      const img = document.createElement('img');
+      img.src   = media;
+      img.alt   = title;
+      img.style.cssText = 'max-width:100%; max-height:70vh; object-fit:contain; display:block;';
+      img.onerror = () => {
+        lbMedia.innerHTML = `
+          <div class="lb-missing">
+            <div class="lb-missing-icon">🖼️</div>
+            <div class="lb-missing-title">File not found</div>
+            <div class="lb-missing-path">${media}</div>
+            <div style="font-size:12px; color:var(--text3); margin-top:8px;">Place the file in your <code>./media/</code> folder with this exact filename.</div>
+          </div>`;
+      };
+      lbMedia.appendChild(img);
+    }
+  }
+
+  function closeLightbox() {
+    stopMedia();
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir) {
+    visibleTiles = getVisibleTiles();
+    const next = currentIdx + dir;
+    if (next < 0 || next >= visibleTiles.length) return;
+    currentIdx = next;
+    renderLightbox(visibleTiles[currentIdx]);
+  }
+
+  // Click tiles
+  allTiles.forEach((tile, i) => {
+    tile.addEventListener('click', () => {
+      visibleTiles = getVisibleTiles();
+      const idx = visibleTiles.indexOf(tile);
+      openLightbox(tile, idx >= 0 ? idx : 0);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click',  () => navigate(-1));
+  lbNext.addEventListener('click',  () => navigate(+1));
+
+  // Click backdrop
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   navigate(-1);
+    if (e.key === 'ArrowRight')  navigate(+1);
+  });
+
+  // ── THUMBNAIL IMAGE FALLBACKS ────────────────────────
+  document.querySelectorAll('.tile-thumb .thumb-img').forEach(img => {
+    if (img.complete && img.naturalWidth === 0) {
+      img.classList.add('error');
+    }
+    img.addEventListener('error', () => img.classList.add('error'));
+  });
+
+})();
+</script>
+</body>
+</html>
